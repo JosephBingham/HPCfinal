@@ -6,7 +6,7 @@ public class Montecarlo_s{
     public static void main(String[] args){
 	Random rand = new Random();
 	double pih = 0;
-	int[] vals = new int[2];
+	int count = 0;
 	int lim = Integer.MAX_VALUE;
 	double x;
 	double y;
@@ -14,13 +14,10 @@ public class Montecarlo_s{
 		x = rand.nextDouble();
 		y = rand.nextDouble();
 		if(x*x + y*y < 1){
-			vals[0]++;
-	    	}
-	    	else{
-			vals[1]++;
+			count++;
 	    	}
 	}
-	pih = 4.0 * (vals[0] + 0.0)/(vals[1] + vals[0]);
+	pih = 4.0 * (count + 0.0)/lim;
 	System.out.println(pih);
 
     }

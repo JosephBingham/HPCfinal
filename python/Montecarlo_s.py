@@ -3,7 +3,7 @@
 import random, sys
 
 val = 0
-lim = 100000000
+lim = 2147483647
 i = 0
 while i < lim:
 	y = random.random()
