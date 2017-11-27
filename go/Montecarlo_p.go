@@ -20,7 +20,8 @@ func main(){
 		if i != thread_count -1 {
 			go func(){
 				ch <- 1
-				for i := 0; i < lim/(thread_count - 1); i++{
+				fmt.Println( lim/(thread_count - 1))
+				for j := 0; j < lim/(thread_count - 1); j++{
 					x := random.Float64()
 					y := random.Float64()
 					if x*x + y*y <= 1{
@@ -32,7 +33,8 @@ func main(){
 			}()
 
 		} else {
-			for i := 0; i < lim % thread_count; i++{
+			fmt.Println(lim % thread_count)
+			for j := 0; j < lim % thread_count; j++{
 				x := random.Float64()
 				y := random.Float64()
 				if x*x + y*y <= 1{
@@ -44,9 +46,9 @@ func main(){
 		}
 
 	}
-	for i := 0; i < thread_count - 1; i++{
+	for i := 0; i < thread_count; i++{
 		a := 0
-		a <- ch
+		a = <- ch
 		a++
 	}
 	limf := 2147483647.0
