@@ -17,11 +17,17 @@ func main(){
 	seed := rand.NewSource(time.Now().UnixNano())
 	random := rand.New(seed)
 	for i := 0; i < thread_count; i++ {
-		if i != thread_count -1 {
 			go func(){
 				ch <- 1
-				fmt.Println( lim/(thread_count - 1))
-				for j := 0; j < lim/(thread_count - 1); j++{
+				fmt.Println(len(ch))
+				loop_end := lim / 100
+//				if len(ch) != thread_count - 1{
+//					loop_end := lim/(thread_count - 1)
+//				} else {
+//					loop_end := lim % (thread_count - 1)
+//				}
+				fmt.Println(len(ch), loop_end)
+				for j := 0; j < loop_end; j++{
 					x := random.Float64()
 					y := random.Float64()
 					if x*x + y*y <= 1{
@@ -32,7 +38,7 @@ func main(){
 				}
 			}()
 
-		} else {
+/*		} else {
 			fmt.Println(lim % thread_count)
 			for j := 0; j < lim % thread_count; j++{
 				x := random.Float64()
@@ -44,14 +50,15 @@ func main(){
 				}
 			}
 		}
-
+*/
 	}
 	for i := 0; i < thread_count; i++{
 		a := 0
 		a = <- ch
 		a++
 	}
-	limf := 2147483647.0
+/*	limf := 2147483647.0
 	pi := count / limf
 	fmt.Println(pi)
+*/
 }
