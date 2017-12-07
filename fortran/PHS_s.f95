@@ -1,0 +1,46 @@
+PROGRAM Trap_s
+	IMPLICIT NONE
+	INTEGER (KIND = 16) :: I, J, MIN, MAX, SIZ, TEM
+	INTEGER (KIND = 16), DIMENSION(214748364) :: ARR
+	INTEGER (KIND = 16), DIMENSION(:), ALLOCATABLE :: TEMP
+	SIZ = 214748364
+	DO I = 0, SIZ
+		ARR(I) = I + 1
+	END DO
+	! randomizing
+	DO I = 0, 214748364
+		J = INT(RAND() * (I + 1))
+		TEM = ARR(J)
+		ARR(J) = ARR(I)
+		ARR(I) = TEM
+	END DO	
+	! PHS
+	MAX = ARR(1)
+	MIN = ARR(1)
+	DO I = 0, SIZ
+		IF (ARR(I) < MIN) THEN
+			MIN = ARR(I)
+		END IF
+		IF (ARR(I) > MAX) THEN
+			MAX = ARR(I)
+		END IF
+	END DO
+	ALLOCATE( TEMP(MAX - MIN + 1))
+	DO I = 0, (MAX - MIN + 1)
+		TEMP(I) = 0
+	END DO
+	DO I = 0, SIZ
+		TEMP(ARR(I)-MIN) = ARR(I)
+	END DO
+	J = 0
+	DO I = 0, (MAX - MIN + 1)
+		IF ( TEMP(I) /= 0 ) THEN
+			ARR(J) = TEMP(I)
+			J = J + 1
+		END IF
+	END DO
+
+	DO I = 0, 214748364
+		PRINT *, ARR(I)
+	END DO
+END PROGRAM Trap_s
