@@ -46,5 +46,8 @@ public class PHS_s{
 		}
 		shuffleArray(arr);
 		int[] result = PHS_sort(arr);
+		for( int i : result ){
+			System.out.println(i);
+		}
 	}
 }
