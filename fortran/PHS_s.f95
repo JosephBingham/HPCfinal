@@ -1,4 +1,4 @@
-PROGRAM Trap_s
+PROGRAM PHS_s
 	IMPLICIT NONE
 	INTEGER (KIND = 16) :: I, J, MIN, MAX, SIZ, TEM
 	INTEGER (KIND = 16), DIMENSION(214748364) :: ARR
@@ -8,7 +8,7 @@ PROGRAM Trap_s
 		ARR(I) = I + 1
 	END DO
 	! randomizing
-	DO I = 0, 214748364
+	DO I = 0, SIZ
 		J = INT(RAND() * (I + 1))
 		TEM = ARR(J)
 		ARR(J) = ARR(I)
@@ -40,7 +40,7 @@ PROGRAM Trap_s
 		END IF
 	END DO
 
-	DO I = 0, 214748364
+	DO I = 0, SIZ
 		PRINT *, ARR(I)
 	END DO
-END PROGRAM Trap_s
+END PROGRAM PHS_s
